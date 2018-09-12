@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Redes_2018
 Vamos mantener un repositorio con material que resulte de utilidad para realizar los trabajos prácticos de la materia. Recuerden que además existe una [página web](http://materias.df.uba.ar/redesa2018c2/), donde pueden encontrar cronogramas, guías y otro tipo de material adicional.
 
@@ -25,7 +24,3 @@ Es el paquete para trabajar con redes mas usado en **Python**. Existen otros bue
 
 * [TUTORIAL PRINCIPAL: Python from Luke to Yoda](https://github.com/gon-uri/Redes_2018/blob/master/Python%20from%20Luke%20to%20Yoda.ipynb) : Fue creado espacialemnte para este curso. Es el **tutorial más importante** ya que cubre aspectos básicos tanto de **Python** como de **NetworkX**.
 * [Documentación](https://networkx.github.io/documentation/latest/tutorial.html): Es el tutorial de la documentación oficial de la libreria.
-=======
-# TP1
-Trabajo 1
->>>>>>> 93533a72ec6470d829968afc70b0b80c994e86dd

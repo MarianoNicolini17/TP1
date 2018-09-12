@@ -1,0 +1,105 @@
+[33mcommit 84ec983284c9124071a736b65a148ed0d0cb6254[m
+Author: Sasha Smolarchik Brenner Socas <sashab@lpc8.labs.df.uba.ar>
+Date:   Fri Sep 7 16:00:25 2018 -0300
+
+    *Agregado el diámetro de la componente más grande a la lista de características.
+    *Llamado a la función esDirigido en las características.
+    *Agregado un try-except a la hora de abrir los archivos: si no hay conexión a internet, sacar los archivos de /Datos, que debería estar en la misma carpeta que el notebook.
+    *Borradas algunas cells de código de prueba.
+
+[33mcommit 1f4241c72c59b66d39d005df973bd3e5c5b31da0[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Fri Aug 17 16:23:05 2018 -0300
+
+    Update README.md
+
+[33mcommit a475dfcce1dd24212b01fe5e1d596194f0af0244[m
+Author: vus <saogmuas@gmail.com>
+Date:   Fri Aug 17 15:18:07 2018 -0300
+
+    Agrego info sobre funciones y librerias especiales
+
+[33mcommit 5628c97f960e7fa38fa3508b15a055aed8bcf76e[m
+Merge: 808438e 1e6270c
+Author: gon-uri <gonzauri@hotmail.com>
+Date:   Wed Aug 15 16:15:56 2018 -0300
+
+    Merge branch 'master' of https://github.com/gon-uri/Redes_2018
+
+[33mcommit 808438e594985497ef354e5ec843fe898f32f0a3[m
+Author: gon-uri <gonzauri@hotmail.com>
+Date:   Wed Aug 15 16:14:04 2018 -0300
+
+    Agrego archivos1er clase
+
+[33mcommit 1e6270cacc947b2e72aee386ff2adeca9fdec4fd[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 17:33:48 2018 -0300
+
+    Update README.md
+
+[33mcommit 30b83b0e83fc3aaee9d05b2ba2959c21a88e35af[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 17:28:47 2018 -0300
+
+    Update README.md
+
+[33mcommit 44a3910b9b66f14e8a2ca203dd6a70eea59e0080[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 17:21:47 2018 -0300
+
+    Update README.md
+
+[33mcommit 4f9c0b7d59a97621deac9f8fa43fbf6d2a9e885d[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 17:03:09 2018 -0300
+
+    Update README.md
+
+[33mcommit 6693e2a07c90474fabdf35e2d6e84a7b19316785[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 17:01:15 2018 -0300
+
+    Delete .Rhistory
+
+[33mcommit de2da1488246c50678b57afb4ab8216eba2ff2af[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 17:00:40 2018 -0300
+
+    Update README.md
+
+[33mcommit 2887729169ac2d55fd129e541c121c38787dc504[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 17:00:07 2018 -0300
+
+    Update README.md
+
+[33mcommit c11e9bb67f987fac67071d013d55055d3e49254e[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 16:59:44 2018 -0300
+
+    Delete README.md~
+
+[33mcommit 65f0eff3c98f1a8de840d49c4cf9a0c0329dc494[m
+Author: gon-uri <gonzauri@hotmail.com>
+Date:   Tue Aug 14 16:58:19 2018 -0300
+
+    Mas sobre el README
+
+[33mcommit 749c0b6e554732a923ca835e755a4ff7bfcf9b6c[m
+Author: gon-uri <gonzauri@hotmail.com>
+Date:   Tue Aug 14 16:41:47 2018 -0300
+
+    Nuevo avance README
+
+[33mcommit 5070a07bfae38bb34eaa6957710b3fcd0bf27b0e[m
+Author: gon-uri <gonzauri@hotmail.com>
+Date:   Tue Aug 14 15:50:22 2018 -0300
+
+    Primeros cambios al README
+
+[33mcommit 6c22e01c1e2130161a5372f9fe128749872546b2[m
+Author: gon-uri <33635010+gon-uri@users.noreply.github.com>
+Date:   Tue Aug 14 15:02:03 2018 -0300
+
+    Initial commit
