@@ -29,7 +29,7 @@ def atributoNodos(r, alist, atributo):
     
 # ----------------------------------------------------------------------------- 
         
-def contadorGenero(r):
+def contadorGenero(r): #Generalizarlo para cualquier atributo
     a = list(nx.get_node_attributes(r, 'gender').values())
     return a.count('m'), a.count('f'), a.count('NA')
 
@@ -38,6 +38,7 @@ def contadorGenero(r):
 def generoAzar(r):
 # Toma una red donde sus nodos tienen el atributo "genero" y los distribuye al
 # azar. 
+# Estaría bueno generalizarlo después para cualquier atributo.
     ng = contadorGenero(r)
     n = list(r.nodes)
     shuffle(n)
@@ -70,8 +71,11 @@ def hEdges(r, atributo):
             
 # -----------------------------------------------------------------------------            
             
-def nulaAtributo(r, atributo, pasos):
-    a = []
+def nulaAtributo(r, pasos): # Generalizarlo para cualquier atributo.
+# Recibe como argumento una red y una cantidad de pasos sobre los cuales se va
+# a iterar.
+# Devuelve dos arrays, una con el número de enlaces homofílicos y otra con el 
+# número de enlaces heterofílicos, para cada red creada al azar.
     for i in range(pasos):
         ra = generoAzar(r)
         a.append(hEdges(ra, 'gender'))
