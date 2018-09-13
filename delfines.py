@@ -36,6 +36,8 @@ def contadorGenero(r):
 # -----------------------------------------------------------------------------
     
 def generoAzar(r):
+# Toma una red donde sus nodos tienen el atributo "genero" y los distribuye al
+# azar. 
     ng = contadorGenero(r)
     n = list(r.nodes)
     shuffle(n)
@@ -77,7 +79,7 @@ def nulaAtributo(r, atributo, pasos):
     lhetero = np.array(a).transpose()[1]
     return lhomo, lhetero
         
-    
+# -----------------------------------------------------------------------------    
 
 
     
