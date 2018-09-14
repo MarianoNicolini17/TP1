@@ -5,9 +5,18 @@ from urllib.request import urlopen
 from random import shuffle
 from copy import deepcopy
 
+# Acá se guardan los datos que vamos a usar.
 
 red_delf = nx.read_gml(urlopen("https://raw.githubusercontent.com/MarianoNicolini17/TP1/master/Datos/dolphins.gml"))
 gen_delf = urlopen("https://raw.githubusercontent.com/MarianoNicolini17/TP1/master/Datos/dolphinsGender.txt").readlines()
+
+#------------------------------------------------------------------------------
+
+# Ésta parte del código es para generar la lista de listas que asocia cada nodo
+# de la red de delfines con un atributo. Después de ejecutarlo van a tener una 
+# lista de listas que se llama sex_delf. Es la lista que tienen que usar 
+# después con la función atributoNodos para que le asigne esos atributos a
+# red_delf.
 
 for i in range(len(gen_delf)):
     gen_delf[i]=gen_delf[i].decode()
@@ -17,13 +26,13 @@ for i in range(len(gen_delf)):
     a = gen_delf[i].rstrip('\n').split('\t')
     sex_delf.append(a)
     
-    
 # -----------------------------------------------------------------------------
 
 def atributoNodos(r, alist, atributo):
 # Toma como argumentos una red, una lista de listas, donde cada una de ellas
-# indica el atributo que se le va a asignar a cada nodo de la red. Devuelve la
-# red con ese atributo ya asociado.
+# indica el atributo que se le va a asignar a cada nodo de la red, y el 
+# atributo que uno quiere asignar. Devuelve la red con ese atributo ya asociado
+# a cada nodo.
     for idx, nodo in enumerate(np.array(alist).transpose()[0]):
         r.nodes[nodo][atributo] = np.array(alist).transpose()[1][idx]
     
@@ -86,6 +95,7 @@ def nulaAtributo(r, pasos): # Generalizarlo para cualquier atributo.
         
 # -----------------------------------------------------------------------------    
 
+# Esta parte del código es para graficar la red de delfines.
         
 atributoNodos(red_delf, sex_delf, 'gender')    
     
@@ -104,6 +114,8 @@ plt.savefig("plot.png", dpi=1000)
 plt.show()
 
 # -----------------------------------------------------------------------------
+
+# Ésta parte del código es para hacer los histogramas de la hipótesis nula.
 
 size = 10000
 x1 = nulaAtributo(red_delf, size)[0]/red_delf.number_of_edges()
