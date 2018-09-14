@@ -5,9 +5,18 @@ from urllib.request import urlopen
 from random import shuffle
 from copy import deepcopy
 
+# Acá se guardan los datos que vamos a usar.
 
 red_delf = nx.read_gml(urlopen("https://raw.githubusercontent.com/MarianoNicolini17/TP1/master/Datos/dolphins.gml"))
 gen_delf = urlopen("https://raw.githubusercontent.com/MarianoNicolini17/TP1/master/Datos/dolphinsGender.txt").readlines()
+
+#------------------------------------------------------------------------------
+
+# Ésta parte del código es para generar la lista de listas que asocia cada nodo
+# de la red de delfines con un atributo. Después de ejecutarlo van a tener una 
+# lista de listas que se llama sex_delf. Es la lista que tienen que usar 
+# después con la función atributoNodos para que le asigne esos atributos a
+# red_delf.
 
 for i in range(len(gen_delf)):
     gen_delf[i]=gen_delf[i].decode()
@@ -17,13 +26,13 @@ for i in range(len(gen_delf)):
     a = gen_delf[i].rstrip('\n').split('\t')
     sex_delf.append(a)
     
-    
 # -----------------------------------------------------------------------------
 
 def atributoNodos(r, alist, atributo):
 # Toma como argumentos una red, una lista de listas, donde cada una de ellas
-# indica el atributo que se le va a asignar a cada nodo de la red. Devuelve la
-# red con ese atributo ya asociado.
+# indica el atributo que se le va a asignar a cada nodo de la red, y el 
+# atributo que uno quiere asignar. Devuelve la red con ese atributo ya asociado
+# a cada nodo.
     for idx, nodo in enumerate(np.array(alist).transpose()[0]):
         r.nodes[nodo][atributo] = np.array(alist).transpose()[1][idx]
     
@@ -36,7 +45,7 @@ def contadorGenero(r): #Generalizarlo para cualquier atributo
 # -----------------------------------------------------------------------------
     
 def generoAzar(r):
-# Toma una red donde sus nodos tienen el atributo "genero" y los distribuye al
+# Toma una red donde sus nodos tienen el atributo "genero" y lo distribuye al
 # azar. 
 # Estaría bueno generalizarlo después para cualquier atributo.
     ng = contadorGenero(r)
@@ -86,6 +95,7 @@ def nulaAtributo(r, pasos): # Generalizarlo para cualquier atributo.
         
 # -----------------------------------------------------------------------------    
 
+# Esta parte del código es para graficar la red de delfines.
         
 atributoNodos(red_delf, sex_delf, 'gender')    
     
@@ -105,22 +115,27 @@ plt.show()
 
 # -----------------------------------------------------------------------------
 
-size = 10000
-x1 = nulaAtributo(red_delf, size)[0]
-x2 = nulaAtributo(red_delf, size)[1]
-#bins=int(np.sqrt(size)
+# Ésta parte del código es para hacer los histogramas de la hipótesis nula.
 
-plt.hist(x1, bins=53)
-# Hay que ver cuál es la mejor manera de poner la cantidad de bins para que se
-# vea lindo. Ya probé varias maneras de ajustarlo, hasta con algunas estimaciones
-# como la de Freedman-Diaconis, pero el histograma aparece entrecortado para
-# un size = 10000. El 53 fue la que mejor quedó, pero lo puse a ojo.
+size = 10000
+x1 = nulaAtributo(red_delf, size)[0]/red_delf.number_of_edges()
+x2 = nulaAtributo(red_delf, size)[1]/red_delf.number_of_edges()
+
+
+plt.hist(x1, bins='scott')
 plt.title("Distribución nula de homofilia para {} muestras".format(size))
 plt.show()
 
-plt.hist(x2, bins=45)
+plt.hist(x2, bins='scott') 
 plt.title("Distribución nula de heterofilia para {} muestras".format(size))
 plt.show()
+
+# Después de probar varias maneras de estimar el número de bins para el 
+# histograma, encontré que la mejor es con bins='scott', cuando uso un 
+# size = 10000. Para sizes más chicos no queda tan bien. Les dejo la página con
+# la documentación de otras opciones para la cantidad de bins por si quieren
+# probar:
+# https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges
 
 
 
