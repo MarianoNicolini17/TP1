@@ -106,10 +106,11 @@ plt.show()
 
 
 size = 10000
-x = nulaAtributo(red_delf, size)[0]
+x1 = nulaAtributo(red_delf, size)[0]
+x2 = nulaAtributo(red_delf, size)[1]
 #bins=int(np.sqrt(size)
 
-plt.hist(x, bins=53)
+plt.hist(x1, bins=53)
 # Hay que ver cuál es la mejor manera de poner la cantidad de bins para que se
 # vea lindo. Ya probé varias maneras de ajustarlo, hasta con algunas estimaciones
 # como la de Freedman-Diaconis, pero el histograma aparece entrecortado para
@@ -117,6 +118,13 @@ plt.hist(x, bins=53)
 plt.title("Distribución nula de homofilia para {} muestras".format(size))
 plt.show()
 
+plt.hist(x2, bins=45)
+# Hay que ver cuál es la mejor manera de poner la cantidad de bins para que se
+# vea lindo. Ya probé varias maneras de ajustarlo, hasta con algunas estimaciones
+# como la de Freedman-Diaconis, pero el histograma aparece entrecortado para
+# un size = 10000. El 53 fue la que mejor quedó, pero lo puse a ojo.
+plt.title("Distribución nula de heterofilia para {} muestras".format(size))
+plt.show()
 
 
 
