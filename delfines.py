@@ -76,6 +76,7 @@ def nulaAtributo(r, pasos): # Generalizarlo para cualquier atributo.
 # a iterar.
 # Devuelve dos arrays, una con el número de enlaces homofílicos y otra con el 
 # número de enlaces heterofílicos, para cada red creada al azar.
+    a = []
     for i in range(pasos):
         ra = generoAzar(r)
         a.append(hEdges(ra, 'gender'))
@@ -85,13 +86,10 @@ def nulaAtributo(r, pasos): # Generalizarlo para cualquier atributo.
         
 # -----------------------------------------------------------------------------    
 
-
-    
-    
+        
 atributoNodos(red_delf, sex_delf, 'gender')    
     
 graph_pos=nx.spring_layout(red_delf)
-
 
 #plt.figure(figsize=(20,20))
 
@@ -104,3 +102,34 @@ nx.draw_networkx_edges(red_delf, graph_pos)
 
 plt.savefig("plot.png", dpi=1000)
 plt.show()
+
+
+
+size = 10000
+x = nulaAtributo(red_delf, size)[0]
+#bins=int(np.sqrt(size)
+
+plt.hist(x, bins=53)
+# Hay que ver cuál es la mejor manera de poner la cantidad de bins para que se
+# vea lindo. Ya probé varias maneras de ajustarlo, hasta con algunas estimaciones
+# como la de Freedman-Diaconis, pero el histograma aparece entrecortado para
+# un size = 10000. El 53 fue la que mejor quedó, pero lo puse a ojo.
+plt.title("Distribución nula de homofilia para {} muestras".format(size))
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
