@@ -36,7 +36,7 @@ def contadorGenero(r): #Generalizarlo para cualquier atributo
 # -----------------------------------------------------------------------------
     
 def generoAzar(r):
-# Toma una red donde sus nodos tienen el atributo "genero" y los distribuye al
+# Toma una red donde sus nodos tienen el atributo "genero" y lo distribuye al
 # azar. 
 # Estaría bueno generalizarlo después para cualquier atributo.
     ng = contadorGenero(r)
@@ -106,21 +106,24 @@ plt.show()
 # -----------------------------------------------------------------------------
 
 size = 10000
-x1 = nulaAtributo(red_delf, size)[0]
-x2 = nulaAtributo(red_delf, size)[1]
-#bins=int(np.sqrt(size)
+x1 = nulaAtributo(red_delf, size)[0]/red_delf.number_of_edges()
+x2 = nulaAtributo(red_delf, size)[1]/red_delf.number_of_edges()
 
-plt.hist(x1, bins=53)
-# Hay que ver cuál es la mejor manera de poner la cantidad de bins para que se
-# vea lindo. Ya probé varias maneras de ajustarlo, hasta con algunas estimaciones
-# como la de Freedman-Diaconis, pero el histograma aparece entrecortado para
-# un size = 10000. El 53 fue la que mejor quedó, pero lo puse a ojo.
+
+plt.hist(x1, bins='sturges')
 plt.title("Distribución nula de homofilia para {} muestras".format(size))
 plt.show()
 
-plt.hist(x2, bins=45)
+plt.hist(x2, bins='scott') 
 plt.title("Distribución nula de heterofilia para {} muestras".format(size))
 plt.show()
+
+# Después de probar varias maneras de estimar el número de bins para el 
+# histograma, encontré que la mejor es con bins='scott', cuando uso un 
+# size = 10000. Para sizes más chicos no queda tan bien. Les dejo la página con
+# la documentación de otras opciones para la cantidad de bins por si quieren
+# probar:
+# https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges
 
 
 
