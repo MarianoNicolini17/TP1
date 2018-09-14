@@ -103,7 +103,7 @@ nx.draw_networkx_edges(red_delf, graph_pos)
 plt.savefig("plot.png", dpi=1000)
 plt.show()
 
-
+# -----------------------------------------------------------------------------
 
 size = 10000
 x1 = nulaAtributo(red_delf, size)[0]
@@ -119,10 +119,6 @@ plt.title("Distribución nula de homofilia para {} muestras".format(size))
 plt.show()
 
 plt.hist(x2, bins=45)
-# Hay que ver cuál es la mejor manera de poner la cantidad de bins para que se
-# vea lindo. Ya probé varias maneras de ajustarlo, hasta con algunas estimaciones
-# como la de Freedman-Diaconis, pero el histograma aparece entrecortado para
-# un size = 10000. El 53 fue la que mejor quedó, pero lo puse a ojo.
 plt.title("Distribución nula de heterofilia para {} muestras".format(size))
 plt.show()
 
