@@ -110,7 +110,7 @@ x1 = nulaAtributo(red_delf, size)[0]/red_delf.number_of_edges()
 x2 = nulaAtributo(red_delf, size)[1]/red_delf.number_of_edges()
 
 
-plt.hist(x1, bins='sturges')
+plt.hist(x1, bins='scott')
 plt.title("Distribución nula de homofilia para {} muestras".format(size))
 plt.show()
 
