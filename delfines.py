@@ -35,6 +35,8 @@ def atributoNodos(r, alist, atributo):
 # a cada nodo.
     for idx, nodo in enumerate(np.array(alist).transpose()[0]):
         r.nodes[nodo][atributo] = np.array(alist).transpose()[1][idx]
+
+atributoNodos(red_delf, sex_delf, 'gender') 
     
 # ----------------------------------------------------------------------------- 
         
@@ -92,17 +94,37 @@ def nulaAtributo(r, pasos): # Generalizarlo para cualquier atributo.
     lhomo = np.array(a).transpose()[0]
     lhetero = np.array(a).transpose()[1]
     return lhomo, lhetero
-        
+   
+atributoNodos(red_delf, sex_delf, 'gender') 
+     
 # -----------------------------------------------------------------------------    
 
+def intersect(l1, l2): 
+# Intersección entre dos listas.
+    l3 = [value for value in l1 if value in l2] 
+    return l3
+
+def overlapOrdenado(r):
+# Recibe una red y devuelve una lista de listas, donde cada una de ellas es un
+# enlace, en el primer elemento, y el overlap de dicho enlace, en el segundo, 
+# ordenadas según el overlap, de menor a mayor.
+    a = []
+    for enlace in list(r.edges):
+        v1 = list(r.adj[enlace[0]])
+        v2 = list(r.adj[enlace[1]])
+        ni = len(intersect(v1,v2))
+        nu = len(v1) + len(v2) - ni -2
+        a.append([enlace, ni/nu])
+    a.sort(key=lambda x: x[1]) # key=lambda me ordena la lista eligiendo algun
+    return a                   # valor como criterio (el overlap en este caso)
+
+# -----------------------------------------------------------------------------
+
 # Esta parte del código es para graficar la red de delfines.
-        
-atributoNodos(red_delf, sex_delf, 'gender')    
     
 graph_pos=nx.spring_layout(red_delf)
 
 #plt.figure(figsize=(20,20))
-
 nx.draw_networkx_nodes(red_delf, graph_pos, node_size=50,
                        node_color = ["blue" if g=="m" else "red" if g=="f" else \
                                      "yellow" for g in nx.get_node_attributes(red_delf, 'gender').values()],
