@@ -1,3 +1,18 @@
+# Punto 3 del TP 1 de redes.
+#
+# Este archivo utiliza una librería llamada "powerlaw", con métodos para fitear
+# power-law y otras funciones a los datos, usando loglikelihood y el test de
+# Kolmogorov-Smirnov para obtener el k mínimo.
+#
+# Para instalar la librería usando pip:
+#                               pip install powerlaw
+#
+# Más información en https://github.com/jeffalstott/powerlaw.
+#
+# Referencia:
+# Jeff Alstott, Ed Bullmore, Dietmar Plenz. (2014). powerlaw: a Python package 
+# for analysis of heavy-tailed distributions. PLoS ONE 9(1): e85777
+
 import networkx as nx
 from urllib.request import urlopen
 import numpy as np
