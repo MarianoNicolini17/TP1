@@ -44,6 +44,7 @@ plt.title("Distribución de grado de la red")
 plt.xscale("log")
 plt.show()
 
+
 # Distribución de grado en escala log-log, bineado lineal.
 plt.hist(x, bins=80, density=True, log=True)
 plt.title("Distribución de grado de la red")
