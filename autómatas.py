@@ -31,17 +31,6 @@ else:
 
 #------------------------------------------------------------------------------
 
-x = np.array(list(dict(red_auto.degree).values()))
-# - Descarté la función grados() para usar directamente métodos de python.
-#   Ahora el tiempo de ejecución es mucho más corto.
-# ~ Sasha
-
-logbins = np.logspace(np.log10(np.min(x)), np.log10(np.max(x)), num=10)
-# Esta variable es una lista que va a servir para setear que los bines del 
-# histograma tengan un espaciado logarítmico.
-
-#------------------------------------------------------------------------------
-
 # Diferentes maneras de visualizar el histograma de la distribución de
 # grado de la red.
 
@@ -63,6 +52,13 @@ logbins = np.logspace(np.log10(np.min(x)), np.log10(np.max(x)), num=10)
 #
 # ~ Sasha
 
+# Lista con los grados de la red.
+x = np.array(list(dict(red_auto.degree).values()))
+# - Descarté la función grados() para usar directamente métodos de python.
+#   Ahora el tiempo de ejecución es mucho más corto.
+# ~ Sasha
+
+# Tamaño de la red.
 N = len(x)
 
 # Distribución de grado en escala lin-lin, bineado lineal.
@@ -112,9 +108,9 @@ pl.plot_ccdf(x, color='b', marker="o", linestyle='None')
 #------------------------------------------------------------------------------
 
 # - fit es un objeto que guarda toda la información de los datos y el fiteo
-# apenas se lo crea con pl.Fit(data,...). De hecho, se puede acceder a (en
-# principio) cualquier fiteo que se quiera. Para acceder al de power law
-# (y todos los parámetros del ajuste) se usa fit.power_law.
+#   apenas se lo crea con pl.Fit(data,...). De hecho, se puede acceder a (en
+#   principio) cualquier fiteo que se quiera. Para acceder al de power law
+#   (y todos los parámetros del ajuste) se usa fit.power_law.
 #
 # - La opción discrete=True es necesaria porque los datos de grado toman sólo
 #   valores discretos.
