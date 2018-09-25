@@ -68,17 +68,18 @@ def hEdges(r, atributo):
 # Recibe como argumentos una red y un cierto atributo (str) para el cual se 
 # quiere ver cuántos enlaces hay entre nodos con el mismo atributo y
 # cuántos entre nodos con atributos diferentes.
-# Devuelve una tupla de dos números, en el primer lugar la cantidad de enlaces
+# Devuelve una tupla de dos números, en el primer lugar la fracción de enlaces
 # entre nodos del mismo atributo y en el segundo entre nodos de atributos 
 # diferentes.
     homo = 0
     hetero = 0
-    for i in range(len(list(r.edges))):
-        if r.nodes[a[i][0]][atributo] == r.nodes[a[i][1]][atributo]:
+    n = len(r.edges)
+    for edge in r.edges:
+        if r.nodes[edge[0]][atributo] == r.nodes[edge[1]][atributo]:
             homo += 1
         else:
             hetero += 1
-    return homo, hetero
+    return homo/n, hetero/n
             
 # -----------------------------------------------------------------------------            
             
@@ -140,15 +141,29 @@ plt.show()
 # Ésta parte del código es para hacer los histogramas de la hipótesis nula.
 
 size = 10000
-x1 = nulaAtributo(red_delf, size)[0]/red_delf.number_of_edges()
-x2 = nulaAtributo(red_delf, size)[1]/red_delf.number_of_edges()
+x1 = nulaAtributo(red_delf, size)[0]
+x2 = nulaAtributo(red_delf, size)[1]
 
 
-plt.hist(x1, bins='scott')
+plt.hist(x1, bins='scott', normed=True)
 plt.title("Distribución nula de homofilia para {} muestras".format(size))
 plt.show()
 
-plt.hist(x2, bins='scott') 
+plt.hist(x2, bins='scott', normed=True) 
+plt.title("Distribución nula de heterofilia para {} muestras".format(size))
+plt.show()
+
+
+
+histhomo, bin_edges1 = np.histogram(x1, bins='scott', density=True)
+homobin_edges = (bin_edges1[:-1] + bin_edges1[1:])/2.
+plt.plot(homobin_edges, histhomo,'bo')
+plt.title("Distribución nula de homofilia para {} muestras".format(size))
+plt.show()
+
+histhete, bin_edges2 = np.histogram(x2, bins='scott', normed=True)
+hetebin_edges = (bin_edges2[:-1] + bin_edges2[1:])/2.
+plt.plot(hetebin_edges, histhete,'bo')
 plt.title("Distribución nula de heterofilia para {} muestras".format(size))
 plt.show()
 
@@ -159,13 +174,46 @@ plt.show()
 # probar:
 # https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram_bin_edges.html#numpy.histogram_bin_edges
 
+# -----------------------------------------------------------------------------
+
+def mediaHist(alturabins, bin_edges):
+    suma = 0
+    n = sum(alturabins)
+    for i in range(len(alturabins)):
+        suma += alturabins[i]*bin_edges[i]
+    return suma/n
 
 
+def desvHist(alturabins, bin_edges):
+    suma = 0
+    n = sum(alturabins)
+    for i in range(len(alturabins)):
+        suma += alturabins[i]*(bin_edges[i] - mediaHist(alturabins, bin_edges))**2
+    return np.sqrt(suma/n)
 
 
+hm = mediaHist(histhomo, bin_edges1)
+hm_err = desvHist(histhomo, bin_edges1)
+
+ht = mediaHist(histhete, bin_edges2)
+ht_err = desvHist(histhete, bin_edges2)
 
 
+def CPDHist(hist, bin_edges, x):
+# Me calcula la probabilidad acumulada en el histograma hasta un cierto valor x.
+# Los argumentos de la función son las alturas de cada barra del histograma en
+# un array, otro array de los límites de cada bin y el valor hasta el que quiero
+# calcular la probabilidad acumulada.
+    bin_len = bin_edges[1:] - bin_edges[:-1]
+    CP = 0
+    i = 0
+    while bin_edges[i] < x:
+        CP += (hist[i]*bin_len[i])
+        i += 1
+    return CP
 
+p_val1 = 1 - CPDHist(histhomo, bin_edges1, hEdges(red_delf,'gender')[0])
+p_val2 = CPDHist(histhete, bin_edges2, hEdges(red_delf,'gender')[1])
 
 
 
